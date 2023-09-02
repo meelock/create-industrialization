@@ -1,35 +1,34 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "creindust",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Create Industrialization",
+  "description": "Adds compat between Create and Modern Industrialization no one asked for.",
   "authors": [
-    "Me!"
+    "Meelock"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/meelock/create-industrialization",
+    "sources": "https://github.com/meelock/create-industrialization"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/creindust/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.github.meelock.creindust.CreIndust"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.17",
+    "fabricloader": ">=0.14.22",
     "fabric-api": "*",
-    "minecraft": "~1.19.4",
+    "minecraft": "~1.20.1",
     "java": ">=17"
   },
   "suggests": {
