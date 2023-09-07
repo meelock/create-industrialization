@@ -1,5 +1,6 @@
 package com.github.meelock.creindust.blocks;
 
+import com.github.meelock.creindust.CreIndust;
 import com.github.meelock.creindust.blockentities.SteamTurbineBlockEntity;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
@@ -23,6 +24,7 @@ public class SteamTurbineBlock extends DirectionalKineticBlock implements IBE<St
     public SteamTurbineBlock(Settings settings) {
         super(settings);
     }
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
@@ -31,9 +33,10 @@ public class SteamTurbineBlock extends DirectionalKineticBlock implements IBE<St
 
         return ActionResult.SUCCESS;
     }
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.cuboid(0f, 0f, 0f, 1f, 1.0f, 0.5f);
+        return VoxelShapes.union(VoxelShapes.cuboid(2f / 16f, 0f, 2f / 16f, 14f / 16f, 12f / 16f, 14f / 16f), VoxelShapes.cuboid(1f / 16f, 0f, 1f / 16f, 15f / 16f, 3f / 16f, 15f / 16f));
     }
 
     /**
@@ -42,7 +45,7 @@ public class SteamTurbineBlock extends DirectionalKineticBlock implements IBE<St
      */
     @Override
     public Direction.Axis getRotationAxis(BlockState state) {
-        return null;
+        return Direction.Axis.Y;
     }
 
     /**
@@ -50,7 +53,7 @@ public class SteamTurbineBlock extends DirectionalKineticBlock implements IBE<St
      */
     @Override
     public Class<SteamTurbineBlockEntity> getBlockEntityClass() {
-        return null;
+        return SteamTurbineBlockEntity.class;
     }
 
     /**
@@ -58,7 +61,7 @@ public class SteamTurbineBlock extends DirectionalKineticBlock implements IBE<St
      */
     @Override
     public BlockEntityType<? extends SteamTurbineBlockEntity> getBlockEntityType() {
-        return null;
+        return CreIndust.STEAM_TURBINE_BLOCK_ENTITY;
     }
 
     /**

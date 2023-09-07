@@ -3,16 +3,11 @@ package com.github.meelock.creindust.blockentities;
 import com.github.meelock.creindust.CreIndust;
 import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 
 public class SteamTurbineBlockEntity extends GeneratingKineticBlockEntity {
@@ -27,9 +22,16 @@ public class SteamTurbineBlockEntity extends GeneratingKineticBlockEntity {
 
         @Override
         protected long getCapacity(FluidVariant variant) {
-            // Here, you can pick your capacity depending on the fluid variant.
-            // For example, if we want to store 8 buckets of any fluid:
-            return (FluidConstants.BUCKET) / 81; // This will convert it to mB amount to be consistent;
+            return FluidConstants.BUCKET;
+        }
+
+        /**
+         * @param variant
+         * @return {@code true} if the passed non-blank variant can be inserted, {@code false} otherwise.
+         */
+        @Override
+        protected boolean canInsert(FluidVariant variant) {
+            return super.canInsert(variant);
         }
 
         @Override
@@ -38,6 +40,7 @@ public class SteamTurbineBlockEntity extends GeneratingKineticBlockEntity {
             markDirty();
         }
     };
+
     public SteamTurbineBlockEntity(BlockPos pos, BlockState state) {
         super(CreIndust.STEAM_TURBINE_BLOCK_ENTITY, pos, state);
     }
